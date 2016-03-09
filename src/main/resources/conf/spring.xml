@@ -10,7 +10,7 @@
     <context:property-placeholder location="classpath:conf/mysql.properties"/>
 
     <!-- 配置mysql数据源 -->
-    <bean id="geonamesDataSource" class="cn.edu.nju.ws.geokb.connection.mysql.DataSource" scope="prototype">
+    <bean id="geonamesDataSource" class="cn.edu.nju.ws.geokb.connection.mysql.DataSource" >
         <constructor-arg index="0" value="${jdbc.driverClass}"/>
         <constructor-arg index="1" value="${jdbc.geonamesUrl}"/>
         <constructor-arg index="2" value="${jdbc.user}"/>
@@ -28,6 +28,8 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
+
+    <context:annotation-config />
 
     <!-- 自动装配 -->
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>

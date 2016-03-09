@@ -29,17 +29,23 @@ public class DataSourcePool {
     private LinkedList<Connection> geonamesConnections;
 
     public DataSourcePool(DataSource geonamesDataSource) {
+        System.out.println("---------------------");
         this.geonamesDataSource = geonamesDataSource;
+        geonamesConnections = geonamesDataSource.getConnections();
     }
 
     /**
      * Get the proxy of a connection to geonames.
      *
      * @return the proxy of a connection if the geonames connection pool is not empty otherwise null;
-     * @throws SQLException
      */
-    public Connection getGeonamesConnection() throws SQLException {
-        return getConnetcion(geonamesConnections);
+    public Connection getGeonamesConnection() {
+        try {
+            return getConnetcion(geonamesConnections);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private Connection getConnetcion(LinkedList<Connection> connections) throws SQLException {
