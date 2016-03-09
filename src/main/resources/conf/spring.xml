@@ -2,56 +2,25 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
     <!-- 导入mysql配置文件 -->
     <context:property-placeholder location="classpath:conf/mysql.properties"/>
 
-    <!-- 配置c3p0数据源 -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="user" value="${jdbc.user}"/>
-        <property name="password" value="${jdbc.password}"/>
-        <property name="driverClass" value="${jdbc.driverClass}"/>
-        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"/>
-        <property name="initialPoolSize" value="${jdbc.initPoolSize}"/>
-        <property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
+    <!-- 配置mysql数据源 -->
+    <bean id="geonamesDataSource" class="cn.edu.nju.ws.geokb.connection.mysql.DataSource" scope="prototype">
+        <constructor-arg index="0" value="${jdbc.driverClass}"/>
+        <constructor-arg index="1" value="${jdbc.geonamesUrl}"/>
+        <constructor-arg index="2" value="${jdbc.user}"/>
+        <constructor-arg index="3" value="${jdbc.password}"/>
+        <constructor-arg index="4" value="${jdbc.poolSize}"/>
     </bean>
 
-    <!-- 配置 SessionFactory -->
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-          p:packagesToScan="cn.edu.nju.ws.geokb">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:conf/hibernate.cfg.xml"/>
+    <bean id="dataSourcePool" class="cn.edu.nju.ws.geokb.connection.mysql.DataSourcePool">
+        <constructor-arg ref="geonamesDataSource"/>
     </bean>
-
-    <!-- 配置 hibernate 的事务管理器 -->
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-    <!-- 配置事务属性 -->
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="get*" read-only="true"/>
-            <tx:method name="*"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <!-- 配置事务切入点, 再把事务属性和事务切入点关联起来 -->
-    <aop:config>
-        <aop:pointcut expression="execution(* cn.edu.nju.ws.geokb.dao.*.*(..))" id="txPointcut"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
-    </aop:config>
 
     <!-- 配置自动扫描的包,忽略Controller -->
     <context:component-scan base-package="cn.edu.nju.ws.geokb" use-default-filters="false">
