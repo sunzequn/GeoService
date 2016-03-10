@@ -29,7 +29,6 @@ public class DataSourcePool {
     private LinkedList<Connection> geonamesConnections;
 
     public DataSourcePool(DataSource geonamesDataSource) {
-        System.out.println("---------------------");
         this.geonamesDataSource = geonamesDataSource;
         geonamesConnections = geonamesDataSource.getConnections();
     }
@@ -46,6 +45,10 @@ public class DataSourcePool {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public int getGeonamesConnectionNum(){
+        return geonamesConnections.size();
     }
 
     private Connection getConnetcion(LinkedList<Connection> connections) throws SQLException {

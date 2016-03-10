@@ -36,4 +36,12 @@ public class BaseDao {
         return 0;
     }
 
+    protected void close(Connection connection){
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

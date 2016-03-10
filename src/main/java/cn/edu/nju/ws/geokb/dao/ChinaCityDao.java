@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -28,6 +29,7 @@ public class ChinaCityDao extends BaseDao {
         if (ListUtil.isEmpty(chinaCities)) {
             return null;
         }
+        close(connection);
         return chinaCities.get(0);
     }
 
@@ -39,6 +41,7 @@ public class ChinaCityDao extends BaseDao {
         if (ListUtil.isEmpty(chinaCities)) {
             return null;
         }
+        close(connection);
         return chinaCities;
     }
 
@@ -49,6 +52,7 @@ public class ChinaCityDao extends BaseDao {
         if (ListUtil.isEmpty(chinaCities)) {
             return null;
         }
+        close(connection);
         return chinaCities;
     }
 

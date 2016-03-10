@@ -24,7 +24,17 @@ public class ChinaCityHandlerTest {
     private ChinaCityHandler chinaCityHandler;
 
     @Test
-    public void directContainsTest(){
+    public void directContainsStringParamTest(){
         System.out.println(chinaCityHandler.directContains("中国"));
+    }
+
+    @Test
+    public void directContainsIntParamTest(){
+        System.out.println(chinaCityHandler.directContains(110000).size());
+    }
+
+    @Test
+    public void transContainsIntParamTest(){
+        System.out.println(chinaCityHandler.transContains(110000).size());
     }
 }

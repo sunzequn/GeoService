@@ -5,6 +5,7 @@ import cn.edu.nju.ws.geokb.dao.ChinaCityDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,19 @@ public class ChinaCityHandler {
 
     @Autowired
     private ChinaCityDao chinaCityDao;
+
+    public Map<String, List<ChinaCity>> transitiveContains(String name){
+        List<ChinaCity> chinaCities = chinaCityDao.getByName(name);
+        if (chinaCities == null){
+            return null;
+        }
+        Map<String, List<ChinaCity>> containsMap = new HashMap<>();
+        for (ChinaCity chinaCity : chinaCities){
+
+        }
+
+        return null;
+    }
 
     public Map<String, List<ChinaCity>> directContains(String name){
         List<ChinaCity> chinaCities = chinaCityDao.getByName(name);
@@ -34,5 +48,26 @@ public class ChinaCityHandler {
             return containsMap;
         }
         return null;
+    }
+
+    public List<ChinaCity> directContains(int id){
+        return chinaCityDao.getChildren(id);
+    }
+
+    public List<ChinaCity> transContains(int id){
+        List<ChinaCity> chinaCities = new ArrayList<>();
+        List<ChinaCity> children = chinaCityDao.getChildren(id);
+        if (children == null){
+            return null;
+        } else {
+            chinaCities.addAll(children);
+            for (ChinaCity child : children){
+                List<ChinaCity> contains = chinaCityDao.getChildren(child.getId());
+                if (contains != null){
+                    chinaCities.addAll(contains);
+                }
+            }
+            return chinaCities;
+        }
     }
 }
