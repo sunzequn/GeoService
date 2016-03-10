@@ -34,7 +34,17 @@ public class ChinaCityHandlerTest {
     }
 
     @Test
+    public void transContainsStringParamTest(){
+        System.out.println(chinaCityHandler.transContains("北京"));
+    }
+
+    @Test
     public void transContainsIntParamTest(){
         System.out.println(chinaCityHandler.transContains(110000).size());
+    }
+
+    @Test
+    public void ifContainsTest(){
+        System.out.println(chinaCityHandler.ifContains("江苏省", "北京"));
     }
 }

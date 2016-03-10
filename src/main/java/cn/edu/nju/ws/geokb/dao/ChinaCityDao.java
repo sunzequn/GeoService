@@ -26,7 +26,7 @@ public class ChinaCityDao extends BaseDao {
         Connection connection = dataSourcePool.getGeonamesConnection();
         String sql = "select * from china_city where id = " + id;
         List<ChinaCity> chinaCities = query(connection, sql, null, ChinaCity.class);
-        if (ListUtil.isEmpty(chinaCities)) {
+        if (chinaCities == null) {
             return null;
         }
         close(connection);
@@ -38,9 +38,6 @@ public class ChinaCityDao extends BaseDao {
         String sql = "select * from china_city where name = ?";
         Object[] params = {name};
         List<ChinaCity> chinaCities = query(connection, sql, params, ChinaCity.class);
-        if (ListUtil.isEmpty(chinaCities)) {
-            return null;
-        }
         close(connection);
         return chinaCities;
     }
@@ -49,9 +46,6 @@ public class ChinaCityDao extends BaseDao {
         Connection connection = dataSourcePool.getGeonamesConnection();
         String sql = "select * from china_city where parentid = " + id;
         List<ChinaCity> chinaCities = query(connection, sql, null, ChinaCity.class);
-        if (ListUtil.isEmpty(chinaCities)) {
-            return null;
-        }
         close(connection);
         return chinaCities;
     }

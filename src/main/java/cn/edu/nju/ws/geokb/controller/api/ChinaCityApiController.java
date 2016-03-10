@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by Sloriac on 16/3/10.
  */
 @Controller
-@RequestMapping("/api/contains/china")
+@RequestMapping("/api/china/contains")
 public class ChinaCityApiController {
 
     @Autowired
@@ -27,4 +27,17 @@ public class ChinaCityApiController {
     public Map<String, List<ChinaCity>> getContains(@PathVariable("name") String name){
         return chinaCityHandler.directContains(name);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/trans/{name}", method = RequestMethod.GET)
+    public Map<String, List<ChinaCity>> getTransContains(@PathVariable("name") String name){
+        return chinaCityHandler.transContains(name);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/{parentName}/{childName}", method = RequestMethod.GET)
+    public Integer ifContains(@PathVariable("parentName") String parentName, @PathVariable("childName") String childName){
+        return chinaCityHandler.ifContains(parentName, childName);
+    }
+
 }
