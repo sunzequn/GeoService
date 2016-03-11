@@ -8,19 +8,19 @@ import java.util.LinkedList;
 /**
  * Created by Sloriac on 16/3/9.
  * <p>
- * Create a proxy implementation of the java.sql.Connection.
+ * Create a proxy implementation of the java.sql.Connection or virtuoso.jena.driver.VirtGraph.
  */
-public class ConnectionInvocationHandler implements InvocationHandler {
+public class ConnectionInvocationHandler<T> implements InvocationHandler {
 
     /**
      * The object which needs a proxy.
      * In this class, it is a connection.
      */
-    private Connection proxy;
+    private T proxy;
     /**
      * The pool of connections.
      */
-    private LinkedList<Connection> connections;
+    private LinkedList<T> connections;
 
     /**
      * Constructor for ConnectionInvocationHandler that takes a Connection and a LinkedList<Connection> to use.
@@ -28,7 +28,7 @@ public class ConnectionInvocationHandler implements InvocationHandler {
      * @param proxy       The connection which needs a proxy.
      * @param connections The pool from which we retrieve connections.
      */
-    public ConnectionInvocationHandler(Connection proxy, LinkedList<Connection> connections) {
+    public ConnectionInvocationHandler(T proxy, LinkedList<T> connections) {
         this.proxy = proxy;
         this.connections = connections;
     }
@@ -38,7 +38,7 @@ public class ConnectionInvocationHandler implements InvocationHandler {
 
         //When calling the method "connection.close()", put the connection back to the pool.
         if (method.getName().equals("close")) {
-            connections.push((Connection) this.proxy);
+            connections.push(this.proxy);
             return null;
         }
         return method.invoke(this.proxy, args);

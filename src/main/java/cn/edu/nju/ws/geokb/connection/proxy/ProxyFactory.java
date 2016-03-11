@@ -1,5 +1,7 @@
 package cn.edu.nju.ws.geokb.connection.proxy;
 
+import virtuoso.jena.driver.VirtGraph;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.sql.Connection;
@@ -53,5 +55,9 @@ public class ProxyFactory {
      */
     public Connection createConnection(InvocationHandler handler) {
         return newProxyInstance(Connection.class, handler);
+    }
+
+    public VirtGraph createGraph(InvocationHandler handler) {
+        return newProxyInstance(VirtGraph.class, handler);
     }
 }

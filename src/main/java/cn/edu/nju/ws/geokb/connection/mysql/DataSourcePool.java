@@ -1,15 +1,11 @@
 package cn.edu.nju.ws.geokb.connection.mysql;
 
-import cn.edu.nju.ws.geokb.connection.mysql.DataSource;
 import cn.edu.nju.ws.geokb.connection.proxy.ConnectionInvocationHandler;
 import cn.edu.nju.ws.geokb.connection.proxy.ProxyFactory;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.SQLFeatureNotSupportedException;
 import java.util.LinkedList;
-import java.util.logging.Logger;
 
 /**
  * Created by Sloriac on 15/11/16.
@@ -40,7 +36,7 @@ public class DataSourcePool {
      */
     public Connection getGeonamesConnection() {
         try {
-            return getConnetcion(geonamesConnections);
+            return getConnetion(geonamesConnections);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -51,10 +47,10 @@ public class DataSourcePool {
         return geonamesConnections.size();
     }
 
-    private Connection getConnetcion(LinkedList<Connection> connections) throws SQLException {
+    private Connection getConnetion(LinkedList<Connection> connections) throws SQLException {
         if (connections.size() > 0) {
             final Connection connection = connections.pop();
-            ConnectionInvocationHandler connHandler = new ConnectionInvocationHandler(connection, connections);
+            ConnectionInvocationHandler connHandler = new ConnectionInvocationHandler<>(connection, connections);
             return ProxyFactory.instance().createConnection(connHandler);
         } else {
             throw new SQLException("No connection left.");

@@ -8,7 +8,6 @@
     <name>GeoService Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
-
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -126,11 +125,12 @@
             <version>0.9.5.2</version>
         </dependency>
 
-        <!-- Jdbc -->
+        <!--  change the scope of the JDBC driver to provided, and put a copy of it in the tomcat lib directory.  -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -187,6 +187,13 @@
                     <groupId>org.hamcrest</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>apache-jena-libs</artifactId>
+            <type>pom</type>
+            <version>3.0.0</version>
         </dependency>
 
     </dependencies>

@@ -47,10 +47,9 @@ public class DataSource {
     }
 
     public LinkedList<Connection> getConnections() {
-        if (!ListUtil.isEmpty(connections)) {
+        if (connections.size() > 0) {
             return connections;
         }
         return null;
     }
-
 }

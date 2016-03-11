@@ -24,27 +24,27 @@ public class ChinaCityHandlerTest {
     private ChinaCityHandler chinaCityHandler;
 
     @Test
-    public void directContainsStringParamTest(){
+    public void directContainsStringParam() {
         System.out.println(chinaCityHandler.directContains("中国"));
     }
 
     @Test
-    public void directContainsIntParamTest(){
+    public void directContainsIntParam() {
         System.out.println(chinaCityHandler.directContains(110000).size());
     }
 
     @Test
-    public void transContainsStringParamTest(){
+    public void transContainsStringParam() {
         System.out.println(chinaCityHandler.transContains("北京"));
     }
 
     @Test
-    public void transContainsIntParamTest(){
+    public void transContainsIntParam() {
         System.out.println(chinaCityHandler.transContains(110000).size());
     }
 
     @Test
-    public void ifContainsTest(){
+    public void ifContains() {
         System.out.println(chinaCityHandler.ifContains("江苏省", "北京"));
     }
 }

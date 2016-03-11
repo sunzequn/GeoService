@@ -24,17 +24,17 @@ public class ChinaCityDaoTest {
     ChinaCityDao chinaCityDao;
 
     @Test
-    public void getByNameTest(){
+    public void getByName() {
         System.out.println(chinaCityDao.getByName("京"));
     }
 
     @Test
-    public void getChildrenTest(){
+    public void getChildren() {
         System.out.println(chinaCityDao.getChildren(100000));
     }
 
     @Test
-    public void getByIdTest(){
+    public void getById() {
         chinaCityDao.getById(1);
     }
 
