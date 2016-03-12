@@ -1,12 +1,9 @@
 package cn.edu.nju.ws.geokb.connection.mysql;
 
-import cn.edu.nju.ws.geokb.utils.ListUtil;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Sloriac on 16/3/9.

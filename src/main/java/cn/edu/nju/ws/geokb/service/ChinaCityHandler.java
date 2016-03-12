@@ -1,8 +1,7 @@
 package cn.edu.nju.ws.geokb.service;
 
 import cn.edu.nju.ws.geokb.bean.ChinaCity;
-import cn.edu.nju.ws.geokb.dao.ChinaCityDao;
-import cn.edu.nju.ws.geokb.utils.ListUtil;
+import cn.edu.nju.ws.geokb.dao.mysql.ChinaCityDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

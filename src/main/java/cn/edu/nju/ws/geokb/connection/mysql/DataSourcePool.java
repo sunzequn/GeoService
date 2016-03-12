@@ -16,11 +16,11 @@ import java.util.LinkedList;
 public class DataSourcePool {
 
     /**
-     * The data source of MySQL.
+     * Geonames data source of MySQL.
      */
     private DataSource geonamesDataSource;
     /**
-     * The pool of connections.
+     * The pool of connections to geonames database.
      */
     private LinkedList<Connection> geonamesConnections;
 

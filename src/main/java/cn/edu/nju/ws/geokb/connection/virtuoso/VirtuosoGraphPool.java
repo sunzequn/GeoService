@@ -1,7 +1,10 @@
 package cn.edu.nju.ws.geokb.connection.virtuoso;
 
+import cn.edu.nju.ws.geokb.connection.proxy.ConnectionInvocationHandler;
+import cn.edu.nju.ws.geokb.connection.proxy.ProxyFactory;
 import virtuoso.jena.driver.VirtGraph;
 
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 /**
@@ -36,21 +39,39 @@ public class VirtuosoGraphPool {
     }
 
     public VirtGraph getGeonamesVirtGraph() {
-        return getVirtGraph(geonamesVirtGraphs);
+        try {
+            return getVirtGraph(geonamesVirtGraphs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public VirtGraph getDbpediaVirtGraph() {
-        return getVirtGraph(dbpediaVirtGraphs);
+        try {
+            return getVirtGraph(dbpediaVirtGraphs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public VirtGraph getSumoVirtGraph() {
-        return getVirtGraph(sumoVirtGraphs);
+        try {
+            return getVirtGraph(sumoVirtGraphs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    private VirtGraph getVirtGraph(LinkedList<VirtGraph> virtGraphs) {
+    private VirtGraph getVirtGraph(LinkedList<VirtGraph> virtGraphs) throws SQLException {
         if (virtGraphs.size() > 0) {
-            return virtGraphs.pop();
+            final VirtGraph virtGraph = virtGraphs.pop();
+            ConnectionInvocationHandler connHandler = new ConnectionInvocationHandler<>(virtGraph, virtGraphs);
+            return ProxyFactory.instance().createGraph(connHandler);
+        } else {
+            throw new SQLException("No connection left.");
         }
-        return null;
     }
 }

@@ -36,7 +36,7 @@ public class ConnectionInvocationHandler<T> implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-        //When calling the method "connection.close()", put the connection back to the pool.
+        //When calling the method "T.close()", put the connection back to the pool.
         if (method.getName().equals("close")) {
             connections.push(this.proxy);
             return null;

@@ -1,4 +1,4 @@
-package cn.edu.nju.ws.geokb.dao;
+package cn.edu.nju.ws.geokb.dao.mysql;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;

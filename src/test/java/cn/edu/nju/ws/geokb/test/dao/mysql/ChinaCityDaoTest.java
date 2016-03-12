@@ -1,6 +1,6 @@
-package cn.edu.nju.ws.geokb.test.dao;
+package cn.edu.nju.ws.geokb.test.dao.mysql;
 
-import cn.edu.nju.ws.geokb.dao.ChinaCityDao;
+import cn.edu.nju.ws.geokb.dao.mysql.ChinaCityDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
