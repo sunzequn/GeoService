@@ -15,15 +15,14 @@ import java.util.List;
 @Repository
 public class ChinaCityDao extends BaseDao {
 
-    @Autowired(required = true)
-    private DataSourcePool dataSourcePool;
+    private static final String TABLE = "china_city";
 
     public ChinaCityDao() {
     }
 
     public ChinaCity getById(int id) {
         Connection connection = dataSourcePool.getGeonamesConnection();
-        String sql = "select * from china_city where id = " + id;
+        String sql = "select * from " + TABLE + " where id = " + id;
         List<ChinaCity> chinaCities = query(connection, sql, null, ChinaCity.class);
         if (chinaCities == null) {
             return null;
@@ -34,16 +33,16 @@ public class ChinaCityDao extends BaseDao {
 
     public List<ChinaCity> getByName(String name) {
         Connection connection = dataSourcePool.getGeonamesConnection();
-        String sql = "select * from china_city where name = ?";
+        String sql = "select * from " + TABLE + " where name = ?";
         Object[] params = {name};
         List<ChinaCity> chinaCities = query(connection, sql, params, ChinaCity.class);
         close(connection);
         return chinaCities;
     }
 
-    public List<ChinaCity> getChildren(int id){
+    public List<ChinaCity> getChildren(int id) {
         Connection connection = dataSourcePool.getGeonamesConnection();
-        String sql = "select * from china_city where parentid = " + id;
+        String sql = "select * from " + TABLE + " where parentid = " + id;
         List<ChinaCity> chinaCities = query(connection, sql, null, ChinaCity.class);
         close(connection);
         return chinaCities;

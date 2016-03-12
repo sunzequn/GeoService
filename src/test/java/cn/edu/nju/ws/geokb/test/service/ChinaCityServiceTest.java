@@ -1,6 +1,6 @@
 package cn.edu.nju.ws.geokb.test.service;
 
-import cn.edu.nju.ws.geokb.service.ChinaCityHandler;
+import cn.edu.nju.ws.geokb.service.ChinaCityService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,33 +18,33 @@ import org.springframework.test.context.web.WebAppConfiguration;
         @ContextConfiguration(name = "parent", locations = "classpath:conf/spring.xml"),
         @ContextConfiguration(name = "child", locations = "classpath:conf/springmvc.xml")
 })
-public class ChinaCityHandlerTest {
+public class ChinaCityServiceTest {
 
     @Autowired
-    private ChinaCityHandler chinaCityHandler;
+    private ChinaCityService chinaCityService;
 
     @Test
     public void directContainsStringParam() {
-        System.out.println(chinaCityHandler.directContains("中国"));
+        System.out.println(chinaCityService.directContains("中国"));
     }
 
     @Test
     public void directContainsIntParam() {
-        System.out.println(chinaCityHandler.directContains(110000).size());
+        System.out.println(chinaCityService.directContains(110000).size());
     }
 
     @Test
     public void transContainsStringParam() {
-        System.out.println(chinaCityHandler.transContains("北京"));
+        System.out.println(chinaCityService.transContains("北京"));
     }
 
     @Test
     public void transContainsIntParam() {
-        System.out.println(chinaCityHandler.transContains(110000).size());
+        System.out.println(chinaCityService.transContains(110000).size());
     }
 
     @Test
     public void ifContains() {
-        System.out.println(chinaCityHandler.ifContains("江苏省", "北京"));
+        System.out.println(chinaCityService.ifContains("江苏省", "北京"));
     }
 }

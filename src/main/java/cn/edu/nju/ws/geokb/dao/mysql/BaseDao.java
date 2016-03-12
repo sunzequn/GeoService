@@ -1,7 +1,9 @@
 package cn.edu.nju.ws.geokb.dao.mysql;
 
+import cn.edu.nju.ws.geokb.connection.mysql.DataSourcePool;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +13,10 @@ import java.util.List;
 /**
  * Created by Sloriac on 16/3/9.
  */
-public class BaseDao {
+public abstract class BaseDao {
+
+    @Autowired(required = true)
+    protected DataSourcePool dataSourcePool;
 
     protected <T> List<T> query(Connection connection, String sql, Object[] params, Class clazz) {
         QueryRunner queryRunner = new QueryRunner();

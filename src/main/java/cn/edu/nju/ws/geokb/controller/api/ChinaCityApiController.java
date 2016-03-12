@@ -1,7 +1,7 @@
 package cn.edu.nju.ws.geokb.controller.api;
 
 import cn.edu.nju.ws.geokb.bean.ChinaCity;
-import cn.edu.nju.ws.geokb.service.ChinaCityHandler;
+import cn.edu.nju.ws.geokb.service.ChinaCityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,24 +20,24 @@ import java.util.Map;
 public class ChinaCityApiController {
 
     @Autowired
-    private ChinaCityHandler chinaCityHandler;
+    private ChinaCityService chinaCityService;
 
     @ResponseBody
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public Map<String, List<ChinaCity>> getContains(@PathVariable("name") String name){
-        return chinaCityHandler.directContains(name);
+        return chinaCityService.directContains(name);
     }
 
     @ResponseBody
     @RequestMapping(value = "/trans/{name}", method = RequestMethod.GET)
     public Map<String, List<ChinaCity>> getTransContains(@PathVariable("name") String name){
-        return chinaCityHandler.transContains(name);
+        return chinaCityService.transContains(name);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{parentName}/{childName}", method = RequestMethod.GET)
     public Integer ifContains(@PathVariable("parentName") String parentName, @PathVariable("childName") String childName){
-        return chinaCityHandler.ifContains(parentName, childName);
+        return chinaCityService.ifContains(parentName, childName);
     }
 
 }

@@ -9,7 +9,7 @@
     <!-- load MySQL & Virtuoso configuration -->
     <context:property-placeholder location="classpath:conf/db.properties"/>
 
-    <!-- configure MySQL data source -->
+    <!-- configure GeoNames database source -->
     <bean id="geonamesDataSource" class="cn.edu.nju.ws.geokb.connection.mysql.DataSource" >
         <constructor-arg index="0" value="${jdbc.driverClass}"/>
         <constructor-arg index="1" value="${jdbc.geonamesUrl}"/>
@@ -18,9 +18,19 @@
         <constructor-arg index="4" value="${jdbc.poolSize}"/>
     </bean>
 
+    <!-- configure Chinese-English WordNet database source -->
+    <bean id="wordnetZhDataSource" class="cn.edu.nju.ws.geokb.connection.mysql.DataSource">
+        <constructor-arg index="0" value="${jdbc.driverClass}"/>
+        <constructor-arg index="1" value="${jdbc.wordnetZhUrl}"/>
+        <constructor-arg index="2" value="${jdbc.user}"/>
+        <constructor-arg index="3" value="${jdbc.password}"/>
+        <constructor-arg index="4" value="${jdbc.poolSize}"/>
+    </bean>
+
     <!-- initiate a connection pool of MySQL  -->
     <bean id="dataSourcePool" class="cn.edu.nju.ws.geokb.connection.mysql.DataSourcePool">
         <constructor-arg ref="geonamesDataSource"/>
+        <constructor-arg ref="wordnetZhDataSource"/>
     </bean>
 
     <!-- configure Virtuoso data source -->

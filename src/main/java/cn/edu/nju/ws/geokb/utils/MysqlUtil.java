@@ -182,7 +182,7 @@ public class MysqlUtil {
      */
     public static void main(String[] args) {
 
-        new MysqlUtil("geonames", "china_city");
+        new MysqlUtil("wordnet", "wn_synset");
 
     }
 

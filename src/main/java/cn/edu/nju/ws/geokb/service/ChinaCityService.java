@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by Sloriac on 16/3/9.
  */
 @Service
-public class ChinaCityHandler {
+public class ChinaCityService {
 
     @Autowired
     private ChinaCityDao chinaCityDao;
