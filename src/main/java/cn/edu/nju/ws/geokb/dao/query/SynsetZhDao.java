@@ -1,4 +1,4 @@
-package cn.edu.nju.ws.geokb.dao.mysql;
+package cn.edu.nju.ws.geokb.dao.query;
 
 import cn.edu.nju.ws.geokb.bean.SynsetZh;
 import org.springframework.stereotype.Repository;

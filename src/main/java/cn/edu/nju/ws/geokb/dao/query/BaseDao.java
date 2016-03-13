@@ -1,4 +1,4 @@
-package cn.edu.nju.ws.geokb.dao.mysql;
+package cn.edu.nju.ws.geokb.dao.query;
 
 import cn.edu.nju.ws.geokb.connection.mysql.DataSourcePool;
 import org.apache.commons.dbutils.QueryRunner;
@@ -6,7 +6,6 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 

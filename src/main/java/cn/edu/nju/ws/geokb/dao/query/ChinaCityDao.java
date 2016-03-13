@@ -1,9 +1,6 @@
-package cn.edu.nju.ws.geokb.dao.mysql;
+package cn.edu.nju.ws.geokb.dao.query;
 
 import cn.edu.nju.ws.geokb.bean.ChinaCity;
-import cn.edu.nju.ws.geokb.connection.mysql.DataSourcePool;
-import cn.edu.nju.ws.geokb.dao.mysql.BaseDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;

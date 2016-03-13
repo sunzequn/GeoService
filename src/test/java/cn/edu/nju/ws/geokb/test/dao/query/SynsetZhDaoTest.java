@@ -1,6 +1,6 @@
-package cn.edu.nju.ws.geokb.test.dao.mysql;
+package cn.edu.nju.ws.geokb.test.dao.query;
 
-import cn.edu.nju.ws.geokb.dao.mysql.SynsetZhDao;
+import cn.edu.nju.ws.geokb.dao.query.SynsetZhDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Sloriac on 16/3/12.
