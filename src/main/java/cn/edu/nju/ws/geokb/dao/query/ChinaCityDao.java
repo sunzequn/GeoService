@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Sloriac on 16/3/9.
  */
 @Repository
-public class ChinaCityDao extends BaseDao {
+public class ChinaCityDao extends BaseQuery {
 
     private static final String TABLE = "china_city";
 

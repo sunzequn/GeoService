@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Sloriac on 16/3/9.
  */
-public abstract class BaseDao {
+public abstract class BaseQuery {
 
     @Autowired(required = true)
     protected DataSourcePool dataSourcePool;

@@ -13,7 +13,7 @@ import java.util.Set;
  * Created by Sloriac on 16/3/12.
  */
 @Repository
-public class SynsetZhDao extends BaseDao {
+public class SynsetZhDao extends BaseQuery {
 
     private static final String TABLE_DEFAULT = "wn_chinese";
     private static final String TABLE_ARTIFACT = "wn_artifact_synset_chs";

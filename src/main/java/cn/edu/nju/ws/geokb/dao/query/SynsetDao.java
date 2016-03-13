@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Sloriac on 16/3/12.
  */
 @Repository
-public class SynsetDao extends BaseDao {
+public class SynsetDao extends BaseQuery {
 
     private static final String TABLE = "wn_synset";
 
