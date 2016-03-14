@@ -1,7 +1,6 @@
-package cn.edu.nju.ws.geokb.test.dao.query;
+package cn.edu.nju.ws.geokb.test.dao.sparql;
 
-import cn.edu.nju.ws.geokb.dao.query.BaseQuery;
-import cn.edu.nju.ws.geokb.dao.query.SynGlossDao;
+import cn.edu.nju.ws.geokb.dao.sparql.SumoDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,10 @@ import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.math.BigDecimal;
+import static org.junit.Assert.*;
 
 /**
- * Created by Sloriac on 16/3/12.
+ * Created by sloriac on 16-3-14.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration(value = "src/main/webapp")
@@ -21,13 +20,13 @@ import java.math.BigDecimal;
         @ContextConfiguration(name = "parent", locations = "classpath:conf/spring.xml"),
         @ContextConfiguration(name = "child", locations = "classpath:conf/springmvc.xml")
 })
-public class SynGlossDaoTest {
+public class SumoDaoTest {
 
     @Autowired
-    private SynGlossDao synGlossDao;
+    private SumoDao sumoDao;
 
     @Test
-    public void testGetGlossOfSynset() throws Exception {
-        System.out.println(synGlossDao.getGlossOfSynset(new BigDecimal(100003226)));
+    public void testGetAllSumoRelations() throws Exception {
+        System.out.println(sumoDao.getAllSumoRelations());
     }
 }

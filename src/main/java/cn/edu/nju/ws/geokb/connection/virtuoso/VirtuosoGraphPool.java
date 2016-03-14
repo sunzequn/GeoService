@@ -65,13 +65,27 @@ public class VirtuosoGraphPool {
         }
     }
 
+    public void putBack(VirtGraph virtGraph, LinkedList<VirtGraph> virtGraphs) {
+        virtGraphs.push(virtGraph);
+    }
+
     private VirtGraph getVirtGraph(LinkedList<VirtGraph> virtGraphs) throws SQLException {
         if (virtGraphs.size() > 0) {
-            final VirtGraph virtGraph = virtGraphs.pop();
-            ConnectionInvocationHandler connHandler = new ConnectionInvocationHandler<>(virtGraph, virtGraphs);
-            return ProxyFactory.instance().createGraph(connHandler);
+            return virtGraphs.pop();
         } else {
             throw new SQLException("No connection left.");
         }
+    }
+
+    public LinkedList<VirtGraph> getGeonamesVirtGraphs() {
+        return geonamesVirtGraphs;
+    }
+
+    public LinkedList<VirtGraph> getDbpediaVirtGraphs() {
+        return dbpediaVirtGraphs;
+    }
+
+    public LinkedList<VirtGraph> getSumoVirtGraphs() {
+        return sumoVirtGraphs;
     }
 }

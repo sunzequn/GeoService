@@ -9,6 +9,8 @@ import virtuoso.jena.driver.VirtGraph;
 import virtuoso.jena.driver.VirtuosoQueryExecution;
 import virtuoso.jena.driver.VirtuosoQueryExecutionFactory;
 
+import java.util.LinkedList;
+
 /**
  * Created by Sloriac on 16/3/13.
  */
@@ -25,5 +27,9 @@ public abstract class BaseSparql {
             return results;
         }
         return null;
+    }
+
+    protected void putBack(VirtGraph virtGraph, LinkedList<VirtGraph> virtGraphs) {
+        virtGraphs.push(virtGraph);
     }
 }
