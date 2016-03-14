@@ -13,7 +13,7 @@ import java.util.Set;
  * Created by Sloriac on 16/3/12.
  */
 @Repository
-public class SynsetZhDao extends BaseQuery {
+public class SynsetZhDao extends BaseQuery implements IBaseQuery {
 
     private static final String TABLE_DEFAULT = "wn_chinese";
     private static final String TABLE_ARTIFACT = "wn_artifact_synset_chs";
@@ -56,20 +56,31 @@ public class SynsetZhDao extends BaseQuery {
     }
 
     public List<SynsetZh> getAllFromTable(String table) {
-        Connection connection = dataSourcePool.getWordnetZhConnection();
         String sql = "select * from " + table;
-        List<SynsetZh> synsetZhs = query(connection, sql, null, SynsetZh.class);
-        close(connection);
-        return synsetZhs;
+        return query(sql, null, SynsetZh.class);
     }
 
     private List<SynsetZh> getByZhFromTable(String table, String zh) {
-        Connection connection = dataSourcePool.getWordnetZhConnection();
         String sql = "select * from " + table + " where chinese = ?";
         Object[] params = {zh};
-        List<SynsetZh> synsetZhs = query(connection, sql, params, SynsetZh.class);
+        return query(sql, params, SynsetZh.class);
+    }
+
+
+    @Override
+    public <T> List<T> query(String sql, Object[] params, Class clazz) {
+        Connection connection = dataSourcePool.getWordnetZhConnection();
+        List<T> ts = query(connection, sql, null, clazz);
         close(connection);
-        return synsetZhs;
+        return ts;
+    }
+
+    @Override
+    public int execute(String sql, Object[] params) {
+        Connection connection = dataSourcePool.getWordnetZhConnection();
+        int res = execute(connection, sql, null);
+        close(connection);
+        return res;
     }
 
 }

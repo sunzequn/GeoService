@@ -11,16 +11,29 @@ import java.util.List;
  * Created by Sloriac on 16/3/12.
  */
 @Repository
-public class SynsetDao extends BaseQuery {
+public class SynsetDao extends BaseQuery implements IBaseQuery {
 
     private static final String TABLE = "wn_synset";
 
     public List<Synset> getWordsOfSynset(BigDecimal synsetId) {
-        Connection connection = dataSourcePool.getWordnetZhConnection();
         String sql = "select * from " + TABLE + " where synset_id = ?";
         Object[] params = {synsetId};
-        List<Synset> synsets = query(connection, sql, params, Synset.class);
+        return query(sql, params, Synset.class);
+    }
+
+    @Override
+    public <T> List<T> query(String sql, Object[] params, Class clazz) {
+        Connection connection = dataSourcePool.getWordnetZhConnection();
+        List<T> ts = query(connection, sql, null, clazz);
         close(connection);
-        return synsets;
+        return ts;
+    }
+
+    @Override
+    public int execute(String sql, Object[] params) {
+        Connection connection = dataSourcePool.getWordnetZhConnection();
+        int res = execute(connection, sql, null);
+        close(connection);
+        return res;
     }
 }
