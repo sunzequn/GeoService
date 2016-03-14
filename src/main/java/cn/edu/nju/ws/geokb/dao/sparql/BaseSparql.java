@@ -22,11 +22,7 @@ public abstract class BaseSparql {
     protected ResultSet queryVirtGraph(String sparql, VirtGraph virtGraph) {
         Query query = QueryFactory.create(sparql);
         VirtuosoQueryExecution vqe = VirtuosoQueryExecutionFactory.create(query, virtGraph);
-        ResultSet results = vqe.execSelect();
-        if (results.hasNext()) {
-            return results;
-        }
-        return null;
+        return vqe.execSelect();
     }
 
     protected void putBack(VirtGraph virtGraph, LinkedList<VirtGraph> virtGraphs) {

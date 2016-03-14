@@ -19,14 +19,15 @@ import java.util.Set;
 public class SumoDao extends BaseSparql implements IBaseSparql {
 
     public ResultSet getSumoByLocalName(String localName) {
-        String uri = UriPrefix.SUMO_P_PREFIX + localName;
-        String sparql = "";
+        String uri = UriPrefix.SUMO_S_PREFIX + localName;
+        String sparql = "select * from <sumo> where {<" + uri + "> ?p ?o}";
+        return query(sparql);
     }
 
     public List<String> getAllSumoRelations() {
         String sparql = "select * from <sumo> where {?s ?p ?o}";
         ResultSet resultSet = query(sparql);
-        if (resultSet == null) {
+        if (!resultSet.hasNext()) {
             return null;
         }
         Set<String> relations = new HashSet<>();
@@ -39,7 +40,6 @@ public class SumoDao extends BaseSparql implements IBaseSparql {
         }
         return new ArrayList<>(relations);
     }
-
 
     @Override
     public ResultSet query(String sparql) {
