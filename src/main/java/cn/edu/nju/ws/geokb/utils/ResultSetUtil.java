@@ -1,6 +1,6 @@
 package cn.edu.nju.ws.geokb.utils;
 
-import cn.edu.nju.ws.geokb.bean.SumoClassCore;
+import cn.edu.nju.ws.geokb.bean.sumo.SumoClassCore;
 import cn.edu.nju.ws.geokb.constant.UriPrefix;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;

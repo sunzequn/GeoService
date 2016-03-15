@@ -1,6 +1,6 @@
 package cn.edu.nju.ws.geokb.controller.api;
 
-import cn.edu.nju.ws.geokb.bean.ChinaCity;
+import cn.edu.nju.ws.geokb.bean.geonames.ChinaCity;
 import cn.edu.nju.ws.geokb.service.ChinaCityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

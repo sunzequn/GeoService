@@ -1,6 +1,6 @@
 package cn.edu.nju.ws.geokb.dao.query;
 
-import cn.edu.nju.ws.geokb.bean.Synset;
+import cn.edu.nju.ws.geokb.bean.sumo.Synset;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;

@@ -1,9 +1,11 @@
-package cn.edu.nju.ws.geokb.bean;
+package cn.edu.nju.ws.geokb.bean.sumo;
 
 import java.math.BigDecimal;
 
 /**
  * Created by Sloriac on 16/3/12.
+ *
+ * The gloss of synset in WordNet.
  */
 public class SynGloss {
 

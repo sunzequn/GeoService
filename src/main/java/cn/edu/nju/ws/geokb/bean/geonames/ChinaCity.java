@@ -1,4 +1,4 @@
-package cn.edu.nju.ws.geokb.bean;
+package cn.edu.nju.ws.geokb.bean.geonames;
 
 /**
  * Created by Sloriac on 16/3/9.

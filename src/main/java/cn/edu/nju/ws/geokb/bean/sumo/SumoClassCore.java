@@ -1,10 +1,12 @@
-package cn.edu.nju.ws.geokb.bean;
+package cn.edu.nju.ws.geokb.bean.sumo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Sloriac on 16/3/13.
+ *
+ * The Sumo class entity, containing core properties whose values are uris.
  */
 public class SumoClassCore {
 

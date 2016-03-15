@@ -6,6 +6,8 @@ import java.util.LinkedList;
 
 /**
  * Created by Sloriac on 16/3/11.
+ *
+ * The wrapper of <code>VirtGraph</code> .
  */
 public class VirtuosoGraph {
 

@@ -7,6 +7,8 @@ import java.util.LinkedList;
 
 /**
  * Created by Sloriac on 16/3/9.
+ *
+ * Datasource of MySQL.
  */
 public class DataSource {
 

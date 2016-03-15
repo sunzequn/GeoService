@@ -1,6 +1,6 @@
 package cn.edu.nju.ws.geokb.dao.query;
 
-import cn.edu.nju.ws.geokb.bean.ChinaCity;
+import cn.edu.nju.ws.geokb.bean.geonames.ChinaCity;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
