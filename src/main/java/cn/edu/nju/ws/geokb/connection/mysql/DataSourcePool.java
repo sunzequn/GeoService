@@ -16,8 +16,6 @@ import java.util.LinkedList;
  */
 public class DataSourcePool {
 
-    private static Logger log = Logger.getLogger(DataSource.class);
-
     /**
      * GeoNames data source of MySQL.
      */
@@ -45,7 +43,6 @@ public class DataSourcePool {
         this.wordnetZhDataSource = wordnetZhDataSource;
         wordnetZhConnections = wordnetZhDataSource.getConnections();
 
-        log.error("log4j");
     }
 
     /**

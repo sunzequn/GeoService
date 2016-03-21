@@ -41,6 +41,7 @@ public class DataSource {
         for (int i = 0; i < poolSize; i++) {
             Connection connection = DriverManager.getConnection(jdbcUrl, user, password);
             connections.add(connection);
+            System.out.println(connection);
         }
     }
 

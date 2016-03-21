@@ -29,14 +29,15 @@ public class VirtuosoGraph {
 
     private void initGraphs() {
         String url = "jdbc:virtuoso://" + serverHost + ":" + serverPort;
-        System.out.println(poolSize);
+        System.out.println(url);
         for (int i = 0; i < poolSize; i++) {
             try {
-                virtGraphs.add(new VirtGraph(url, userName, password));
+                VirtGraph virtGraph = new VirtGraph(url, userName, password);
+                System.out.println(virtGraph.getConnection());
+                virtGraphs.add(virtGraph);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 
