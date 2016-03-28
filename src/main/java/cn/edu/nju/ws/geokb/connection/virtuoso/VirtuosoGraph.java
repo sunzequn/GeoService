@@ -25,6 +25,7 @@ public class VirtuosoGraph {
         this.password = password;
         this.poolSize = poolSize;
         initGraphs();
+
     }
 
     private void initGraphs() {
