@@ -1,6 +1,6 @@
-package cn.edu.nju.ws.geokb.test.dao.query;
+package cn.edu.nju.ws.geokb.test.dao.query.wn;
 
-import cn.edu.nju.ws.geokb.dao.query.SynsetDao;
+import cn.edu.nju.ws.geokb.dao.query.wn.SynsetDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,6 @@ public class SynsetDaoTest {
 
     @Test
     public void testGetWordsOfSynset() throws Exception {
-        System.out.println(synsetDao.getWordsOfSynset(new BigDecimal(200774403)));
+        System.out.println(synsetDao.getWordsOfSynset(new BigDecimal(108820496)));
     }
 }

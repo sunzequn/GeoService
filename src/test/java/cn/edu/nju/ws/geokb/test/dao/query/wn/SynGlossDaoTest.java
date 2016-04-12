@@ -1,7 +1,6 @@
-package cn.edu.nju.ws.geokb.test.dao.query;
+package cn.edu.nju.ws.geokb.test.dao.query.wn;
 
-import cn.edu.nju.ws.geokb.dao.query.BaseQuery;
-import cn.edu.nju.ws.geokb.dao.query.SynGlossDao;
+import cn.edu.nju.ws.geokb.dao.query.wn.SynGlossDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +28,9 @@ public class SynGlossDaoTest {
     @Test
     public void testGetGlossOfSynset() throws Exception {
         System.out.println(synGlossDao.getGlossOfSynset(new BigDecimal(100003226)));
+        System.out.println(synGlossDao.getGlossOfSynset(new BigDecimal(108820496)));
+        System.out.println(synGlossDao.getGlossOfSynset(new BigDecimal(108773393)));
+        System.out.println(synGlossDao.getGlossOfSynset(new BigDecimal(108641769)));
+        System.out.println(synGlossDao.getGlossOfSynset(new BigDecimal(108005407)));
     }
 }

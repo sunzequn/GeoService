@@ -1,6 +1,8 @@
-package cn.edu.nju.ws.geokb.dao.query;
+package cn.edu.nju.ws.geokb.dao.query.wn;
 
 import cn.edu.nju.ws.geokb.bean.sumo.SynGloss;
+import cn.edu.nju.ws.geokb.dao.query.BaseQuery;
+import cn.edu.nju.ws.geokb.dao.query.IBaseQuery;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -24,7 +26,7 @@ public class SynGlossDao extends BaseQuery implements IBaseQuery {
     @Override
     public <T> List<T> query(String sql, Object[] params, Class clazz) {
         Connection connection = dataSourcePool.getWordnetZhConnection();
-        List<T> ts = query(connection, sql, null, clazz);
+        List<T> ts = query(connection, sql, params, clazz);
         close(connection);
         return ts;
     }
@@ -32,7 +34,7 @@ public class SynGlossDao extends BaseQuery implements IBaseQuery {
     @Override
     public int execute(String sql, Object[] params) {
         Connection connection = dataSourcePool.getWordnetZhConnection();
-        int res = execute(connection, sql, null);
+        int res = execute(connection, sql, params);
         close(connection);
         return res;
     }

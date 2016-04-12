@@ -1,6 +1,6 @@
-package cn.edu.nju.ws.geokb.test.dao.query;
+package cn.edu.nju.ws.geokb.test.dao.query.wn;
 
-import cn.edu.nju.ws.geokb.dao.query.SynsetZhDao;
+import cn.edu.nju.ws.geokb.dao.query.wn.SynsetZhDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package cn.edu.nju.ws.geokb.test.dao.query;
 
-import cn.edu.nju.ws.geokb.dao.query.ChinaCityDao;
+import cn.edu.nju.ws.geokb.dao.query.geonames.ChinaCityDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
