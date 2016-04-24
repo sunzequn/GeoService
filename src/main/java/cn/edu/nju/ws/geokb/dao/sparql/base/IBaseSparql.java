@@ -1,4 +1,4 @@
-package cn.edu.nju.ws.geokb.dao.sparql;
+package cn.edu.nju.ws.geokb.dao.sparql.base;
 
 import org.apache.jena.query.ResultSet;
 

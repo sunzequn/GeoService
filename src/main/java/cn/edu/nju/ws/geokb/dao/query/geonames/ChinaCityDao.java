@@ -1,8 +1,9 @@
 package cn.edu.nju.ws.geokb.dao.query.geonames;
 
 import cn.edu.nju.ws.geokb.bean.geonames.ChinaCity;
-import cn.edu.nju.ws.geokb.dao.query.BaseQuery;
-import cn.edu.nju.ws.geokb.dao.query.IBaseQuery;
+import cn.edu.nju.ws.geokb.dao.query.base.BaseQuery;
+import cn.edu.nju.ws.geokb.dao.query.base.GeonamesBaseQuery;
+import cn.edu.nju.ws.geokb.dao.query.base.IBaseQuery;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by Sloriac on 16/3/9.
  */
 @Repository
-public class ChinaCityDao extends BaseQuery implements IBaseQuery {
+public class ChinaCityDao extends GeonamesBaseQuery {
 
     private static final String TABLE = "china_city";
 
@@ -39,19 +40,4 @@ public class ChinaCityDao extends BaseQuery implements IBaseQuery {
         return query(sql, null, ChinaCity.class);
     }
 
-    @Override
-    public <T> List<T> query(String sql, Object[] params, Class clazz) {
-        Connection connection = dataSourcePool.getGeonamesConnection();
-        List<T> ts = query(connection, sql, null, clazz);
-        close(connection);
-        return ts;
-    }
-
-    @Override
-    public int execute(String sql, Object[] params) {
-        Connection connection = dataSourcePool.getGeonamesConnection();
-        int res = execute(connection, sql, null);
-        close(connection);
-        return res;
-    }
 }

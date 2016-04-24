@@ -1,4 +1,4 @@
-package cn.edu.nju.ws.geokb.dao.query;
+package cn.edu.nju.ws.geokb.dao.query.base;
 
 import java.sql.Connection;
 import java.util.List;

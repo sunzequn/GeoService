@@ -1,4 +1,4 @@
-package cn.edu.nju.ws.geokb.dao.sparql;
+package cn.edu.nju.ws.geokb.dao.sparql.base;
 
 import cn.edu.nju.ws.geokb.connection.virtuoso.VirtuosoGraphPool;
 import org.apache.jena.query.Query;
@@ -16,7 +16,7 @@ import java.util.LinkedList;
  */
 public abstract class BaseSparql {
 
-    @Autowired(required = true)
+    @Autowired
     protected VirtuosoGraphPool virtuosoGraphPool;
 
     protected ResultSet queryVirtGraph(String sparql, VirtGraph virtGraph) {

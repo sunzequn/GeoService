@@ -33,18 +33,28 @@
         <constructor-arg ref="wordnetZhDataSource"/>
     </bean>
 
-    <!-- configure Virtuoso data source -->
-    <bean id="sumoVirtuosoGraph" class="cn.edu.nju.ws.geokb.connection.virtuoso.VirtuosoGraph">
-        <constructor-arg index="0" value="${sumo.serverHost}"/>
-        <constructor-arg index="1" value="${sumo.serverPort}"/>
-        <constructor-arg index="2" value="${sumo.userName}"/>
-        <constructor-arg index="3" value="${sumo.password}"/>
-        <constructor-arg index="4" value="${sumo.poolSize}"/>
+    <!-- configure geonames Virtuoso data source -->
+    <bean id="geonamesVirtuosoGraph" class="cn.edu.nju.ws.geokb.connection.virtuoso.VirtuosoGraph">
+        <constructor-arg index="0" value="${geonames.serverHost}"/>
+        <constructor-arg index="1" value="${geonames.serverPort}"/>
+        <constructor-arg index="2" value="${geonames.userName}"/>
+        <constructor-arg index="3" value="${geonames.password}"/>
+        <constructor-arg index="4" value="${geonames.poolSize}"/>
+    </bean>
+
+    <!-- configure dbpedia Virtuoso data source -->
+    <bean id="dbpediaVirtuosoGraph" class="cn.edu.nju.ws.geokb.connection.virtuoso.VirtuosoGraph">
+        <constructor-arg index="0" value="${dbpedia.serverHost}"/>
+        <constructor-arg index="1" value="${dbpedia.serverPort}"/>
+        <constructor-arg index="2" value="${dbpedia.userName}"/>
+        <constructor-arg index="3" value="${dbpedia.password}"/>
+        <constructor-arg index="4" value="${dbpedia.poolSize}"/>
     </bean>
 
     <!-- initiate a connection pool of Virtuoso  -->
     <bean id="virtuosoGraphPool" class="cn.edu.nju.ws.geokb.connection.virtuoso.VirtuosoGraphPool">
-        <constructor-arg ref="sumoVirtuosoGraph"/>
+        <constructor-arg ref="geonamesVirtuosoGraph"/>
+        <constructor-arg ref="dbpediaVirtuosoGraph"/>
     </bean>
 
     <!-- Enable auto scanning feature in Spring -->

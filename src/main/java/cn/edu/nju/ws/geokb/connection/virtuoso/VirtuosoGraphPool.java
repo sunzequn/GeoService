@@ -16,25 +16,16 @@ public class VirtuosoGraphPool {
 
     private VirtuosoGraph geonamesVirtuosoGraph;
     private VirtuosoGraph dbpediaVirtuosoGraph;
-    private VirtuosoGraph sumoVirtuosoGraph;
 
     private LinkedList<VirtGraph> geonamesVirtGraphs;
     private LinkedList<VirtGraph> dbpediaVirtGraphs;
-    private LinkedList<VirtGraph> sumoVirtGraphs;
 
-    public VirtuosoGraphPool(VirtuosoGraph sumoVirtuosoGraph) {
-        this.sumoVirtuosoGraph = sumoVirtuosoGraph;
-        sumoVirtGraphs = sumoVirtuosoGraph.getVirtGraphs();
-    }
-
-    public VirtuosoGraphPool(VirtuosoGraph geonamesVirtuosoGraph, VirtuosoGraph dbpediaVirtuosoGraph, VirtuosoGraph sumoVirtuosoGraph) {
+    public VirtuosoGraphPool(VirtuosoGraph geonamesVirtuosoGraph, VirtuosoGraph dbpediaVirtuosoGraph) {
         this.geonamesVirtuosoGraph = geonamesVirtuosoGraph;
         this.dbpediaVirtuosoGraph = dbpediaVirtuosoGraph;
-        this.sumoVirtuosoGraph = sumoVirtuosoGraph;
 
         geonamesVirtGraphs = geonamesVirtuosoGraph.getVirtGraphs();
         dbpediaVirtGraphs = dbpediaVirtuosoGraph.getVirtGraphs();
-        sumoVirtGraphs = sumoVirtuosoGraph.getVirtGraphs();
 
     }
 
@@ -50,15 +41,6 @@ public class VirtuosoGraphPool {
     public VirtGraph getDbpediaVirtGraph() {
         try {
             return getVirtGraph(dbpediaVirtGraphs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public VirtGraph getSumoVirtGraph() {
-        try {
-            return getVirtGraph(sumoVirtGraphs);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -85,7 +67,4 @@ public class VirtuosoGraphPool {
         return dbpediaVirtGraphs;
     }
 
-    public LinkedList<VirtGraph> getSumoVirtGraphs() {
-        return sumoVirtGraphs;
-    }
 }

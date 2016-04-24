@@ -1,4 +1,4 @@
-package cn.edu.nju.ws.geokb.dao.query;
+package cn.edu.nju.ws.geokb.dao.query.base;
 
 import cn.edu.nju.ws.geokb.connection.mysql.DataSourcePool;
 import org.apache.commons.dbutils.QueryRunner;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public abstract class BaseQuery {
 
-    @Autowired(required = true)
+    @Autowired
     protected DataSourcePool dataSourcePool;
 
     protected <T> List<T> query(Connection connection, String sql, Object[] params, Class clazz) {
