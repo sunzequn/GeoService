@@ -1,30 +1,36 @@
-package cn.edu.nju.ws.geokb.bean.geonames;
+package cn.edu.nju.ws.geokb.bean.climate;
 
 /**
  * Created by sunzequn on 2016/4/24.
  */
 public class Koppen {
 
-    private String longitude;
-    private String latitude;
+    private double longitude;
+    private double latitude;
     private String type;
 
     public Koppen() {
     }
 
-    public String getLongitude() {
+    public Koppen(double longitude, double latitude, String type) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.type = type;
+    }
+
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
@@ -39,8 +45,8 @@ public class Koppen {
     @Override
     public String toString() {
         return "Koppen{" +
-                "longitude='" + longitude + '\'' +
-                ", latitude='" + latitude + '\'' +
+                "longitude=" + longitude +
+                ", latitude=" + latitude +
                 ", type='" + type + '\'' +
                 '}';
     }

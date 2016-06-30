@@ -1,7 +1,7 @@
-package cn.edu.nju.ws.geokb.controller.api;
+package cn.edu.nju.ws.geokb.controller.api.geonames;
 
 import cn.edu.nju.ws.geokb.bean.geonames.ChinaCity;
-import cn.edu.nju.ws.geokb.service.ChinaCityService;
+import cn.edu.nju.ws.geokb.service.geonames.ChinaCityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +17,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/api/china/contains")
-public class ChinaCityApiController {
+public class ChinaCityController {
 
     @Autowired
     private ChinaCityService chinaCityService;

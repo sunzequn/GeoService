@@ -1,4 +1,4 @@
-package cn.edu.nju.ws.geokb.service;
+package cn.edu.nju.ws.geokb.service.geonames;
 
 import cn.edu.nju.ws.geokb.bean.geonames.ChinaCity;
 import cn.edu.nju.ws.geokb.dao.query.geonames.ChinaCityDao;

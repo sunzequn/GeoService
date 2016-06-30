@@ -26,6 +26,8 @@ public class DataSourcePool {
      */
     private DataSource wordnetZhDataSource;
 
+    private DataSource climateDataSource;
+
     /**
      * The pool of connections to GeoNames database.
      */
@@ -36,12 +38,17 @@ public class DataSourcePool {
      */
     private LinkedList<Connection> wordnetZhConnections;
 
-    public DataSourcePool(DataSource geonamesDataSource, DataSource wordnetZhDataSource) {
+    private LinkedList<Connection> climateConnections;
+
+    public DataSourcePool(DataSource geonamesDataSource, DataSource wordnetZhDataSource, DataSource climateDataSource) {
         this.geonamesDataSource = geonamesDataSource;
         geonamesConnections = geonamesDataSource.getConnections();
 
         this.wordnetZhDataSource = wordnetZhDataSource;
         wordnetZhConnections = wordnetZhDataSource.getConnections();
+
+        this.climateDataSource = climateDataSource;
+        climateConnections = climateDataSource.getConnections();
 
     }
 
@@ -67,6 +74,15 @@ public class DataSourcePool {
     public Connection getWordnetZhConnection() {
         try {
             return getConnection(wordnetZhConnections);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Connection getClimateConnection() {
+        try {
+            return getConnection(climateConnections);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

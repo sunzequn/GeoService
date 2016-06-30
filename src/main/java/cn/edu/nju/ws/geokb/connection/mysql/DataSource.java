@@ -51,4 +51,16 @@ public class DataSource {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "DataSource{" +
+                "connections=" + connections +
+                ", mysqlDriver='" + mysqlDriver + '\'' +
+                ", jdbcUrl='" + jdbcUrl + '\'' +
+                ", user='" + user + '\'' +
+                ", password='" + password + '\'' +
+                ", poolSize=" + poolSize +
+                '}';
+    }
 }

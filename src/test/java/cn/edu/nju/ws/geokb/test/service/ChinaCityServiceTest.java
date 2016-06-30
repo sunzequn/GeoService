@@ -1,6 +1,6 @@
 package cn.edu.nju.ws.geokb.test.service;
 
-import cn.edu.nju.ws.geokb.service.ChinaCityService;
+import cn.edu.nju.ws.geokb.service.geonames.ChinaCityService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
