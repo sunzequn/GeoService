@@ -1,6 +1,7 @@
 package cn.edu.nju.ws.geokb.controller.api.geonames;
 
 import cn.edu.nju.ws.geokb.bean.geonames.ChinaCity;
+import cn.edu.nju.ws.geokb.bean.geonames.Position;
 import cn.edu.nju.ws.geokb.service.geonames.ChinaCityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,28 +17,34 @@ import java.util.Map;
  * Created by Sloriac on 16/3/10.
  */
 @Controller
-@RequestMapping("/api/china/contains")
+@RequestMapping("/api/china")
 public class ChinaCityController {
 
     @Autowired
     private ChinaCityService chinaCityService;
 
     @ResponseBody
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/contains/{name}", method = RequestMethod.GET)
     public Map<String, List<ChinaCity>> getContains(@PathVariable("name") String name){
         return chinaCityService.directContains(name);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/trans/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/contains/trans/{name}", method = RequestMethod.GET)
     public Map<String, List<ChinaCity>> getTransContains(@PathVariable("name") String name){
         return chinaCityService.transContains(name);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/{parentName}/{childName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/contains/{parentName}/{childName}", method = RequestMethod.GET)
     public Integer ifContains(@PathVariable("parentName") String parentName, @PathVariable("childName") String childName){
         return chinaCityService.ifContains(parentName, childName);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/position/{name}", method = RequestMethod.GET)
+    public Position getChinaCityPositionByName(@PathVariable("name") String name) {
+        return chinaCityService.getChinaCityPositionByName(name);
     }
 
 }

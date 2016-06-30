@@ -1,7 +1,9 @@
 package cn.edu.nju.ws.geokb.service.climate;
 
 import cn.edu.nju.ws.geokb.bean.climate.Koppen;
+import cn.edu.nju.ws.geokb.bean.climate.KoppenMapping;
 import cn.edu.nju.ws.geokb.dao.query.climate.KoppenDao;
+import cn.edu.nju.ws.geokb.dao.query.climate.KoppenMappingDao;
 import cn.edu.nju.ws.geokb.handler.grid.FindGrid;
 import cn.edu.nju.ws.geokb.handler.grid.Grid;
 import org.springframework.beans.factory.InitializingBean;
@@ -20,12 +22,12 @@ public class KoppenService implements InitializingBean {
     @Autowired
     private KoppenDao koppenDao;
     @Autowired
+    private KoppenMappingDao koppenMappingDao;
+    @Autowired
     private FindGrid findGrid;
     private List<List<Grid>> koppenGrid;
-    private List<List<Grid>> gpcpGrid;
 
     public KoppenService() {
-
     }
 
     /**
@@ -47,25 +49,30 @@ public class KoppenService implements InitializingBean {
         return null;
     }
 
-    private Grid findGpcpGrid(double lng, double lat) {
-        return findGrid.find(lng, lat, gpcpGrid);
+    public String getZhongxueTypeByLntLat(double lng, double lat) {
+        Grid grid = findGrid.find(lng, lat, koppenGrid);
+        System.out.println("获得最近的点：" + grid);
+        if (grid != null) {
+            Koppen koppen = koppenDao.getByLngLat(grid.getLongitude(), grid.getLatitude());
+            if (koppen != null) {
+                KoppenMapping koppenMapping = koppenMappingDao.getByKoppenType(koppen.getType());
+                return koppenMapping.getZhongxuetype();
+            }
+        }
+        return null;
     }
 
-
-    private List<List<Grid>> gpcpGrid() {
-        List<List<Grid>> res = new ArrayList<>();
-        double lat = 91.25;
-        for (int i = 0; i < 72; i++) {
-            lat -= 2.5;
-            double lng = -181.25;
-            List<Grid> row = new ArrayList<>();
-            for (int j = 0; j < 144; j++) {
-                lng += 2.5;
-                row.add(new Grid(lng, lat));
+    public String getDesByLntLat(double lng, double lat) {
+        Grid grid = findGrid.find(lng, lat, koppenGrid);
+        System.out.println("获得最近的点：" + grid);
+        if (grid != null) {
+            Koppen koppen = koppenDao.getByLngLat(grid.getLongitude(), grid.getLatitude());
+            if (koppen != null) {
+                KoppenMapping koppenMapping = koppenMappingDao.getByKoppenType(koppen.getType());
+                return koppenMapping.getDescription();
             }
-            res.add(row);
         }
-        return res;
+        return null;
     }
 
     private List<List<Grid>> koppenGrid() {
@@ -91,6 +98,5 @@ public class KoppenService implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         koppenGrid = koppenGrid();
-        gpcpGrid = gpcpGrid();
     }
 }

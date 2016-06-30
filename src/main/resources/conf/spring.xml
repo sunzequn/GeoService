@@ -42,29 +42,11 @@
         <constructor-arg ref="climateDataSource"/>
     </bean>
 
-    <!-- configure geonames Virtuoso data source -->
-    <!--<bean id="geonamesVirtuosoGraph" class="cn.edu.nju.ws.geokb.connection.virtuoso.VirtuosoGraph">-->
-    <!--<constructor-arg index="0" value="${geonames.serverHost}"/>-->
-    <!--<constructor-arg index="1" value="${geonames.serverPort}"/>-->
-    <!--<constructor-arg index="2" value="${geonames.userName}"/>-->
-    <!--<constructor-arg index="3" value="${geonames.password}"/>-->
-    <!--<constructor-arg index="4" value="${geonames.poolSize}"/>-->
-    <!--</bean>-->
+    <bean id="geonamesConnection" class="cn.edu.nju.ws.geokb.connection.virtuoso.VirtuosoConnection">
+        <constructor-arg index="0" value="${geonames.prefix}"/>
+        <constructor-arg index="1" value="${geonames.suffix}"/>
+    </bean>
 
-    <!-- configure dbpedia Virtuoso data source -->
-    <!--<bean id="dbpediaVirtuosoGraph" class="cn.edu.nju.ws.geokb.connection.virtuoso.VirtuosoGraph">-->
-    <!--<constructor-arg index="0" value="${dbpedia.serverHost}"/>-->
-    <!--<constructor-arg index="1" value="${dbpedia.serverPort}"/>-->
-    <!--<constructor-arg index="2" value="${dbpedia.userName}"/>-->
-    <!--<constructor-arg index="3" value="${dbpedia.password}"/>-->
-    <!--<constructor-arg index="4" value="${dbpedia.poolSize}"/>-->
-    <!--</bean>-->
-
-    <!-- initiate a connection pool of Virtuoso  -->
-    <!--<bean id="virtuosoGraphPool" class="cn.edu.nju.ws.geokb.connection.virtuoso.VirtuosoGraphPool">-->
-    <!--<constructor-arg ref="geonamesVirtuosoGraph"/>-->
-    <!--<constructor-arg ref="dbpediaVirtuosoGraph"/>-->
-    <!--</bean>-->
 
     <!-- Enable auto scanning feature in Spring -->
     <context:component-scan base-package="cn.edu.nju.ws.geokb" use-default-filters="false">

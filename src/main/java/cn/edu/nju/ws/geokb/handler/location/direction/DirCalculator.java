@@ -3,10 +3,12 @@ package cn.edu.nju.ws.geokb.handler.location.direction;
 
 import cn.edu.nju.ws.geokb.handler.location.constant.Direction;
 import cn.edu.nju.ws.geokb.utils.AngleUtil;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Sloriac on 16/2/16.
  */
+@Service
 public class DirCalculator {
 
     private static final double HALF_NORTH_ANGLE = 22.5;

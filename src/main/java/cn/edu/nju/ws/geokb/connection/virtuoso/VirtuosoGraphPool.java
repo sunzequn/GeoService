@@ -20,6 +20,10 @@ public class VirtuosoGraphPool {
     private LinkedList<VirtGraph> geonamesVirtGraphs;
     private LinkedList<VirtGraph> dbpediaVirtGraphs;
 
+    public VirtuosoGraphPool(VirtuosoGraph geonamesVirtuosoGraph) {
+        this.geonamesVirtuosoGraph = geonamesVirtuosoGraph;
+    }
+
     public VirtuosoGraphPool(VirtuosoGraph geonamesVirtuosoGraph, VirtuosoGraph dbpediaVirtuosoGraph) {
         this.geonamesVirtuosoGraph = geonamesVirtuosoGraph;
         this.dbpediaVirtuosoGraph = dbpediaVirtuosoGraph;

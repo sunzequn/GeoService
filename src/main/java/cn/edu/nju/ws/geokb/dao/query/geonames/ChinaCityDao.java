@@ -18,6 +18,11 @@ public class ChinaCityDao extends GeonamesBaseQuery {
     public ChinaCityDao() {
     }
 
+    public List<ChinaCity> getAll() {
+        String sql = "select * from " + TABLE;
+        return query(sql, null, ChinaCity.class);
+    }
+
     public ChinaCity getById(int id) {
         String sql = "select * from " + TABLE + " where id = " + id;
         List<ChinaCity> chinaCities = query(sql, null, ChinaCity.class);
@@ -30,6 +35,12 @@ public class ChinaCityDao extends GeonamesBaseQuery {
     public List<ChinaCity> getByName(String name) {
         String sql = "select * from " + TABLE + " where name = ?";
         Object[] params = {name};
+        return query(sql, params, ChinaCity.class);
+    }
+
+    public List<ChinaCity> getByShortName(String shortName) {
+        String sql = "select * from " + TABLE + " where shortname = ?";
+        Object[] params = {shortName};
         return query(sql, params, ChinaCity.class);
     }
 

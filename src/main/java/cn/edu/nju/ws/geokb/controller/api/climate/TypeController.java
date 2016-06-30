@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by sunzequn on 2016/6/29.
  */
 @Controller
-@RequestMapping("/api/climate/type/koppen")
-public class KoppenController {
+@RequestMapping("/api/climate/type")
+public class TypeController {
 
     @Autowired
     private KoppenService koppenService;
@@ -26,11 +26,29 @@ public class KoppenController {
      * @return Koppen气候类型，字符串
      */
     @ResponseBody
-    @RequestMapping(value = "/{lng}/{lat}", method = RequestMethod.GET)
+    @RequestMapping(value = "/koppen/{lng}/{lat}", method = RequestMethod.GET)
     public String getKoppenType(@PathVariable("lng") double lng, @PathVariable("lat") double lat) {
         if (lng > 180 || lng < -180 || lat > 90 || lat < -90) {
             return "parameters error";
         }
         return koppenService.getKoppenTypeByLntLat(lng, lat);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/zhongxue/{lng}/{lat}", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
+    public String getZhongxueType(@PathVariable("lng") double lng, @PathVariable("lat") double lat) {
+        if (lng > 180 || lng < -180 || lat > 90 || lat < -90) {
+            return "parameters error";
+        }
+        return koppenService.getZhongxueTypeByLntLat(lng, lat);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/description/{lng}/{lat}", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
+    public String getDes(@PathVariable("lng") double lng, @PathVariable("lat") double lat) {
+        if (lng > 180 || lng < -180 || lat > 90 || lat < -90) {
+            return "parameters error";
+        }
+        return koppenService.getDesByLntLat(lng, lat);
     }
 }

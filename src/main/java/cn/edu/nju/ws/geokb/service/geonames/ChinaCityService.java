@@ -1,7 +1,9 @@
 package cn.edu.nju.ws.geokb.service.geonames;
 
 import cn.edu.nju.ws.geokb.bean.geonames.ChinaCity;
+import cn.edu.nju.ws.geokb.bean.geonames.Position;
 import cn.edu.nju.ws.geokb.dao.query.geonames.ChinaCityDao;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +16,12 @@ import java.util.Map;
  * Created by Sloriac on 16/3/9.
  */
 @Service
-public class ChinaCityService {
+public class ChinaCityService implements InitializingBean {
 
     @Autowired
     private ChinaCityDao chinaCityDao;
+    private HashMap<String, ChinaCity> cityNameMap;
+    private HashMap<String, ChinaCity> cityShortNameMap;
 
     public List<ChinaCity> directContains(int id) {
         return chinaCityDao.getChildren(id);
@@ -87,7 +91,6 @@ public class ChinaCityService {
             }
             return 0;
         }
-
         return -1;
 
 
@@ -99,4 +102,25 @@ public class ChinaCityService {
 
     }
 
+    public Position getChinaCityPositionByName(String name) {
+        ChinaCity chinaCity = cityNameMap.get(name);
+        if (chinaCity == null) {
+            chinaCity = cityShortNameMap.get(name);
+        }
+        if (chinaCity == null) {
+            return null;
+        }
+        return new Position(chinaCity.getLng(), chinaCity.getLat());
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        List<ChinaCity> chinaCities = chinaCityDao.getAll();
+        cityNameMap = new HashMap<>();
+        cityShortNameMap = new HashMap<>();
+        for (ChinaCity chinaCity : chinaCities) {
+            cityNameMap.put(chinaCity.getName(), chinaCity);
+            cityShortNameMap.put(chinaCity.getShortname(), chinaCity);
+        }
+    }
 }
